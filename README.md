@@ -25,7 +25,7 @@ Make sure you have the following installed:
 https://github.com/sanketp1/sentimental_analysis_frontend.git
 
 # Navigate to the project directory
-cd sentiment-analysis-app
+cd sentiment_analysis_frontend
 
 # Install dependencies
 pip install -r requirements.txt
