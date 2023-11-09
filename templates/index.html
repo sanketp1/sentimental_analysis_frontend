@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis App</title>
+    <!-- Add Bootstrap CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Sentiment Analysis App</h1>
+        <form method="post" action="/">
+            <div class="form-group">
+                <label for="text">Enter text:</label>
+                <input type="text" class="form-control" name="text" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        {% if result %}
+            <h2 class="mt-4">Analysis Result:</h2>
+            <p><strong>Sentiment:</strong> {{ result.sentiment }} {% if result.sentiment == 'Positive' %}😃{% elif result.sentiment == 'Neutral' %}😐{% elif result.sentiment == 'Negative' %}😞{% else %}❓{% endif %}</p>
+            <p><strong>Polarity Score:</strong> {{ result.polarity_score }}</p>
+            <p><strong>Raw Categorization:</strong></p>
+            <ul>
+                <li><strong>Negative:</strong> {{ result.raw_categorisation.neg }} {% if result.raw_categorisation.neg > 0.5 %}<div class="progress"><div class="progress-bar" role="progressbar" style="width: {{ result.raw_categorisation.neg * 100 }}%;" aria-valuenow="{{ result.raw_categorisation.neg * 100 }}" aria-valuemin="0" aria-valuemax="100"></div></div>{% endif %}</li>
+                <li><strong>Neutral:</strong> {{ result.raw_categorisation.neu }} {% if result.raw_categorisation.neu > 0.5 %}<div class="progress"><div class="progress-bar" role="progressbar" style="width: {{ result.raw_categorisation.neu * 100 }}%;" aria-valuenow="{{ result.raw_categorisation.neu * 100 }}" aria-valuemin="0" aria-valuemax="100"></div></div>{% endif %}</li>
+                <li><strong>Positive:</strong> {{ result.raw_categorisation.pos }} {% if result.raw_categorisation.pos > 0.5 %}<div class="progress"><div class="progress-bar" role="progressbar" style="width: {{ result.raw_categorisation.pos * 100 }}%;" aria-valuenow="{{ result.raw_categorisation.pos * 100 }}" aria-valuemin="0" aria-valuemax="100"></div></div>{% endif %}</li>
+                <li><strong>Compound:</strong> {{ result.raw_categorisation.compound }}</li>
+            </ul>
+        {% endif %}
+    </div>
+    <!-- Add Bootstrap JS and Popper.js CDN -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
