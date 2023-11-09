@@ -22,7 +22,7 @@ Make sure you have the following installed:
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/sentiment-analysis-app.git
+https://github.com/sanketp1/sentimental_analysis_frontend.git
 
 # Navigate to the project directory
 cd sentiment-analysis-app
